@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>ejemplo1 de vue js</title>
+</head>
+<body>
+
+<div id="hola">
+
+    <h1>{{mensaje}}</h1>
+
+    <input type="text" v-model="texto" >
+
+    <h2  V-on:click="ejecutar">{{texto}}</h2>
+
+
+
+    <h3>suma de dos numeros</h3>
+
+    seleccion:<select v-model="opc">
+            <option value="suma">suma</option>
+            <option value="resta">resta</option>
+            <option value="multiplicacion">multiplicacion</option>
+            <option value="division">division</option>
+            </select>
+<br><br>
+    numero 1 <input type="number" v-model="n1"><br><br>
+    numero 2 <input type="number" v-model="n2">
+
+ 
+
+
+    <h3 v-if="opc=='suma'">EL TOTAL ES: {{parseInt(n1)+parseInt(n2)+" "+opc}}</h3>
+    <h3 v-if="opc=='resta'">EL TOTAL ES: {{parseInt(n1)-parseInt(n2)+" "+opc}}</h3>
+    <h3 v-if="opc=='multiplicacion'">EL TOTAL ES: {{parseInt(n1)*parseInt(n2)+" "+opc}}</h3>
+    <h3 v-if="opc=='division'">EL TOTAL ES: {{parseInt(n1)/parseInt(n2)+" "+opc}}</h3>
+
+<br><br>
+<h4>listado de nombres</h4>
+<ul>
+<li v-for="item in datos">{{item.nombre}}</li>
+
+</ul>
+
+<hr>
+
+<titulo></titulo>
+
+<tabla></tabla>
+
+<br><br>
+<tablas></tablas>
+<tablas></tablas>
+<tablas></tablas>
+
+<br>
+<br>
+
+<listado v-bind:arreglo="registros"></listado>
+
+</div>
+
+
+
+  <script>
+
+/*     componente, se crea el html afuera y luego en el template solo se llama*/
+      var cod="<table border = '1'>  <tr> <th>numeros</th> <td>1998</td> </tr>    </table>";
+
+/*la tabla que se usa en el vue-listado y en el metodo registro*/
+var tabla =""+"<table border = '1'>"+
+ "<tr> <td>ID</td> <td>nombre</td>  </tr>"+
+  "<tr v-for='item in arreglo'> <td>{{item.id}}</td> <td>{{item.nombre}}</td> </tr> </table>";
+
+Vue.component("titulo",{
+template:"<h1>soy un titulo bien original</h1>"
+});
+
+Vue.component("tabla",{
+    template:""+"<table border = '1'>"+ 
+     "<tr> <td>nombre</td> <td>apellido</td> <td>edad</td> </tr> "+
+     " <tr> <td>jorge</td> <td>oswaldo</td> <td>21</td> </tr>  </table>"
+}
+);
+/*aqui se llama el codigo html*/
+Vue.component("tablas",{
+template:cod
+
+})
+
+/*el vue que se utiliza para el listado que solo recorre*/
+Vue.component("listado",{
+    props:['arreglo'],
+    template:tabla
+})
+
+
+    
+var app=new Vue(
+{
+el:"#hola",
+data:{
+
+    mensaje:"hola mundo desde vue",
+   texto:"",
+   n1:0,
+   n2:0,
+   opc:"",
+   datos:[
+{nombre:"jorge"},
+{nombre:"carlos"},
+{nombre:"marcos"}
+  ],
+  /*el registro que se llama en el listado*/
+  registros:[
+{id:01, nombre:"juan perez"},
+{id:02, nombre:"norma trejo"},
+{id:03, nombre:"elmer arevalo"},
+{id:04, nombre:"carlos martinez"}
+],
+
+
+},
+
+
+methods:{
+ejecutar: function(){
+    this.mensaje="me cambiaste";
+},
+
+
+}
+
+
+
+
+}
+)
+
+
+  </script>
+    
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-image: url(http://soscreacionesweb.com/sites/default/files/fondo-slide-1_2_0.jpg);
+    background-repeat: no-repeat;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+#d {
+    background-color: darkgray;
+    background-image: url(https://www.shareicon.net/download/2016/08/03/806203_people_512x512.png);
+    background-repeat: no-repeat;
+}
+
+#d1 {
+    background-color: darkslategray;
+}
+
+.navbar-inverse {
+    background-color: black;
+    border-color: #080808;
+}
+
+    .navbar-inverse .navbar-brand {
+        color: black;
+    }
+
+#td {
+    border-color: black;
+    border-style: ridge;
+}
+
+.dropdown-menu {
+}
+
+#j {
+    margin-left: 75px;
+    margin-right: 5%;
+    margin-top: 10px;
+    background-color: darkslategray
+}
+
+

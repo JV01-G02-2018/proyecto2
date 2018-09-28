@@ -1,0 +1,127 @@
+﻿@model IEnumerable<parcial3intento.Models.usuarios>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@using (Ajax.BeginForm("eliminar", new AjaxOptions()
+{
+
+    HttpMethod = "post",
+    UpdateTargetId = "resultado"
+}
+))
+
+{
+    <input type="submit" value="eliminar" />
+}
+
+
+@using (Ajax.BeginForm("editar", new AjaxOptions()
+{
+    HttpMethod = "post",
+    UpdateTargetId = "resultado"
+
+}))
+{
+    <input type="submit" value="editar" />
+}
+
+@using (Ajax.BeginForm("crear", new AjaxOptions()
+{
+    HttpMethod = "post",
+    UpdateTargetId = "resultado"
+
+}))
+{
+    <input type="submit" value="crear" />
+}
+
+
+
+
+<br />
+
+@using (Ajax.BeginForm("buscar", new AjaxOptions()
+{
+    HttpMethod = "post",
+    UpdateTargetId = "tabla",
+    
+}))
+
+{
+<div class="form-group">
+    <div class="">
+
+        <input type="text" id="tecla" name="busqueda" placeholder="ingrese la busqueda" class="form-control" />
+        <input type="submit" value="buscar" class="btn btn-primary" />
+    </div>
+   
+
+</div>
+   
+ }
+
+<script>
+    $(document).ready(function () {
+        $("#tecla").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+
+            $.ajax({
+                data: { valor:value },
+                url: "/usuarios/buscar",
+                type: "POST",
+                success: recibir,
+            })
+        });
+
+        function recibir(datos) {
+            var resultado = $("#tabla");
+            resultado.html(datos);
+        }
+
+    });
+</script>
+
+<div id="resultado">
+    <table class="table" id="tabla">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.edad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.contrasenia)
+            </th>
+            <th></th>
+        </tr>
+        <tbody id="mitabla">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.edad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.contrasenia)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

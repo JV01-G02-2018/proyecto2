@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+
+        <input type="text" placeholder="ingrese una tarea" v-model="txttarea">
+           <button v-on:click="creartareas">agregar tarea</button>
+
+           <ul v-for="tarea in listatareas">
+                 <li>
+                 <input type="checkbox">
+                 <label for="">{{tarea.texto}}</label>
+                 <button v-on:click="eliminartarea(tarea)">x</button>
+                 </li>
+
+           </ul>
+
+    </div>
+
+    <script>
+    new Vue({
+el:"#app",
+data:{
+txttarea:"...",
+listatareas:[]
+},
+
+methods:{
+creartareas:function(){
+var tarea= this.txttarea.trim();
+
+if(tarea)
+{
+    this.listatareas.push({ 
+     texto:tarea,
+    checked:false
+    });
+
+}
+this.txttarea="";
+alert("se ingreso la tarea");
+},
+
+eliminartarea:function(tarea){
+var index = this.listatareas.indexOf(tarea);
+this.listatareas.splice(index,1);
+
+}
+}
+
+
+
+    });
+    
+    
+
+    
+    </script>
+    
+</body>
+</html>
